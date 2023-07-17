@@ -1,0 +1,23 @@
+.btn {
+  display: inline-block;
+  width: 130px;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.title {
+  position: relative;
+  top: 7px;
+  left: 10px;
+}
+
+.light {
+  background-color: white;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}

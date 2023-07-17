@@ -1,0 +1,49 @@
+.banner {
+  display: flex;
+  justify-content: space-between;
+  width: 1450px;
+  height: 450px;
+  background-color: rgb(248, 212, 81);
+  border-radius: 30px;
+}
+
+.aboutProduct {
+  margin-top: 30px;
+  margin-left: 100px;
+}
+
+.title {
+  width: 450px;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.description {
+  width: 450px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 280px;
+  margin-top: 35px;
+}
+
+.images {
+  position: relative;
+}
+
+.image {
+  margin-top: 25px;
+  position: relative;
+  height: 400px;
+}
+
+.adbanner {
+  position: absolute;
+  z-index: 1;
+  top: 180px;
+  right: 300px;
+}

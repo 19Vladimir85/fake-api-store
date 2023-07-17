@@ -1,0 +1,24 @@
+.iconsConteiner {
+  font-size: 22px;
+  border-radius: 30px;
+  border: 1px;
+  background-color: hsl(0, 12%, 94%);
+  width: 77px;
+  height: 32px;
+  position: relative;
+  right: 17px;
+  top: 3px;
+}
+
+.icons {
+  position: relative;
+  left: 13px;
+}
+
+.cart:hover {
+  color: #1677ff;
+}
+
+.privetArea:hover {
+  color: #1677ff;
+}

@@ -1,0 +1,22 @@
+.cardProduct {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.cardimg {
+  width: 25%;
+  height: 25%;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+}
+
+.aboutProduct {
+  width: 25%;
+  height: 25%;
+  margin-top: 0px;
+}
