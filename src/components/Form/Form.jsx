@@ -34,11 +34,16 @@ function Form() {
         placeholder="Описание"
       ></input>
       {errors.description && <p className={styles.error}>Поле не заполнено</p>}
-      <input
+      <select
         {...register("category", { required: true })}
         className={styles.input}
         placeholder="Категория"
-      ></input>
+      >
+        <option value="">Бижутерия</option>
+        <option value="">Электроника</option>
+        <option value="">Женская одежда</option>
+        <option value="">Мужская одежда</option>
+      </select>
       {errors.category && <p className={styles.error}>Поле не заполнено</p>}
       <input
         {...register("price", { required: true })}
