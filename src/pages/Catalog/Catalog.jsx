@@ -1,31 +1,56 @@
-// import { useEffect, useState } from "react";
 import style from "./Catalog.module.css";
 import { api } from "../../utils/api";
 import Card from "../../components/Card/Card";
 import useApi from "../../hooks/useApi";
-import { Spin } from "antd";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import { Filter } from "../../components/Filter/Filter";
+import { tabs } from "../../utils/consts";
 
 function Catalog() {
-  // const [products, setProducts] = useState([]);
+  const [currentTab, setCurrentTab] = useState("all");
+  const getAllProducts = useCallback(() => api.getAllProducts(), []);
+  const {
+    data: products,
+    loading,
+    setData: setProducts,
+  } = useApi(getAllProducts);
 
-  const getProducts = useCallback(() => api.getAllProducts(), []);
-  const { data: products, error, loading } = useApi(getProducts);
+  function onChange(activTab) {
+    setCurrentTab(activTab);
+    if (activTab === "all") {
+      api.getAllProducts().then((res) => setProducts(res));
+    } else {
+      api.getCategoryProducts(activTab).then((res) => setProducts(res));
+    }
+  }
 
-  // useEffect(() => {
-  //   api.getAllProducts().then((res) => setProducts(res));
-  // }, []);
   return (
-    <>
-      {loading && <Spin />}
-      {products && (
-        <div className={style.catalog}>
-          {products.map((el) => (
-            <Card key={el.id} isFavorite={false} {...el}></Card>
-          ))}
-        </div>
-      )}
-    </>
+    <div className={style.catalog}>
+      <div className={style.filter}>
+        <Filter tabs={tabs} onChange={onChange} activTab={currentTab} />
+      </div>
+      <div className={style.catalogCards}>
+        {products
+          ? products.map((el) => (
+              <Card
+                key={el.id}
+                isFavorite={false}
+                {...el}
+                loading={loading}
+              ></Card>
+            ))
+          : Array(10)
+              .fill(1)
+              .map((el) => (
+                <Card
+                  key={el.id}
+                  isFavorite={false}
+                  {...el}
+                  loading={loading}
+                ></Card>
+              ))}
+      </div>
+    </div>
   );
 }
 export default Catalog;

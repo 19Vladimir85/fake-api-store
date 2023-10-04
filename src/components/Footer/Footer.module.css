@@ -1,0 +1,25 @@
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgb(239, 237, 237);
+  height: 75px;
+}
+
+.contacts {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.logoVk {
+  height: 25px;
+  width: 25px;
+}
+
+.footerNetWorks {
+  display: flex;
+  gap: 5px;
+}

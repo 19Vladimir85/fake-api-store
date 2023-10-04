@@ -1,0 +1,13 @@
+.filter {
+  display: flex;
+  gap: 15px;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 0 4px 2px;
+}
+
+.active {
+  border-bottom: 2px solid #1677ff;
+}

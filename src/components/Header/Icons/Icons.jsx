@@ -2,6 +2,7 @@ import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { Space } from "antd";
 import styles from "./Icons.module.css";
+import { Link } from "react-router-dom";
 
 function Icons() {
   const [cartActive, setCartActive] = useState(false);
@@ -20,22 +21,26 @@ function Icons() {
       <div className={styles.iconsConteiner}>
         <div className={styles.icons}>
           <Space>
-            <ShoppingCartOutlined
-              className={styles.cart}
-              style={{
-                color: cartActive ? "#1677ff" : "",
-                borderRadius: 5,
-              }}
-              onClick={cartClick}
-            />
-            <UserOutlined
-              className={styles.privetArea}
-              style={{
-                color: privetAreaActive ? "#1677ff" : "",
-                borderRadius: 5,
-              }}
-              onClick={privetAreaClick}
-            />
+            <Link className={styles.link} to="/cart">
+              <ShoppingCartOutlined
+                className={styles.cart}
+                style={{
+                  color: cartActive ? "#1677ff" : "",
+                  borderRadius: 5,
+                }}
+                onClick={cartClick}
+              />
+            </Link>
+            <Link className={styles.link} to="/registration">
+              <UserOutlined
+                className={styles.privetArea}
+                style={{
+                  color: privetAreaActive ? "#1677ff" : "",
+                  borderRadius: 5,
+                }}
+                onClick={privetAreaClick}
+              />
+            </Link>
           </Space>
         </div>
       </div>

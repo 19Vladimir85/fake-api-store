@@ -1,16 +1,12 @@
 .btn {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 130px;
   height: 40px;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-}
-
-.title {
-  position: relative;
-  top: 7px;
-  left: 10px;
 }
 
 .light {

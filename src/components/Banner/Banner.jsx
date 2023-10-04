@@ -2,7 +2,7 @@ import styles from "./Banner.module.css";
 import Button from "../Button/Button";
 import AdBanner from "../AdBanner/AdBanner";
 
-function Banner({ img, title, description }) {
+function Banner({ img, title, description, onClick }) {
   return (
     <>
       <div className={styles.banner}>
@@ -11,7 +11,9 @@ function Banner({ img, title, description }) {
           <p className={styles.description}>{description}</p>
           <div className={styles.buttons}>
             <Button theme="light">Купить сейчас</Button>
-            <Button theme="dark">Узнать больше</Button>
+            <Button onClick={() => onClick(true)} theme="dark">
+              Узнать больше
+            </Button>
           </div>
         </div>
         <div className={styles.images}>

@@ -1,0 +1,11 @@
+.starRating {
+  display: flex;
+}
+
+.starsInput {
+  display: none;
+}
+
+.starItem {
+  cursor: pointer;
+}

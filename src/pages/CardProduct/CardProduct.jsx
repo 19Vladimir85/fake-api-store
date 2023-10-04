@@ -1,6 +1,9 @@
 import styles from "./CardProduct.module.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import CartButton from "../../components/CartButton/CartButton";
+import Button from "../../components/Button/Button";
+import StarRating from "../../components/StarRating/StarRating";
 
 function CardProduct() {
   const [product, setProduct] = useState([]);
@@ -21,6 +24,7 @@ function CardProduct() {
         <img src={product.image} alt="img" className={styles.image}></img>
       </div>
       <div className={styles.aboutProduct}>
+        <StarRating />
         <p className={styles.title}>
           <b>Название:</b> {product.title}
         </p>
@@ -33,6 +37,10 @@ function CardProduct() {
         <p className={styles.price}>
           <b>Цена:</b> {product.price}$
         </p>
+        <div className={styles.inCart}>
+          <CartButton />
+          <Button theme={"dark"}>В корзину</Button>
+        </div>
       </div>
     </div>
   );

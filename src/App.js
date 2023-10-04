@@ -9,36 +9,73 @@ import Jewelery from "./pages/Jewelery/Jewelery";
 import MensClothing from "./pages/MensClothing/MensClothing";
 import WomensClothing from "./pages/WomensClothing/WomensClothing";
 import CardProduct from "./pages/CardProduct/CardProduct";
+import Registration from "./pages/Registration/Registration";
+import Footer from "./components/Footer/Footer";
+import NotFound from "./pages/NotFound/NotFound";
+import Cart from "./pages/Cart/Cart";
+import { themeContext } from "./context/ThemeContext";
+import { useState } from "react";
+import { UserContext } from "./context/UserContext";
+import { getLSItem } from "./utils/localStorage";
+import PrivateRoute from "./utils/router/PrivateRoute";
 
 function App() {
+  const [theme, setTheme] = useState("white");
+  const [token, setToken] = useState(getLSItem("token"));
+
   return (
     <>
-      <div className={styles.App}>
-        <Header />
-        <Routes>
-          <Route path="/" element={<MainPage></MainPage>}></Route>
-          <Route path="/main" element={<MainPage></MainPage>}></Route>
-          <Route path="/allproducts" element={<Catalog></Catalog>}></Route>
-          <Route
-            path="/electronics"
-            element={<Electronics></Electronics>}
-          ></Route>
-          <Route path="/jewelery" element={<Jewelery></Jewelery>}></Route>
-          <Route
-            path="/mensclothing"
-            element={<MensClothing></MensClothing>}
-          ></Route>
-          <Route
-            path="/womensclothing"
-            element={<WomensClothing></WomensClothing>}
-          ></Route>
-          <Route path="/addproduct" element={<AddProduct></AddProduct>}></Route>
-          <Route
-            path="/product/:id"
-            element={<CardProduct></CardProduct>}
-          ></Route>
-        </Routes>
-      </div>
+      <UserContext.Provider
+        value={{ token, onChangeLogin: (token) => setToken(token) }}
+      >
+        <themeContext.Provider
+          value={{ theme, onChangeTheme: (theme) => setTheme(theme) }}
+        >
+          <div className={styles.App}>
+            <Header />
+            <div className={styles.body}>
+              <Routes>
+                <Route element={<PrivateRoute />}>
+                  <Route
+                    path="/addproduct"
+                    element={<AddProduct></AddProduct>}
+                  ></Route>
+                </Route>
+                <Route path="/" element={<MainPage></MainPage>}></Route>
+                <Route path="/main" element={<MainPage></MainPage>}></Route>
+                <Route
+                  path="/allproducts"
+                  element={<Catalog></Catalog>}
+                ></Route>
+                <Route
+                  path="/electronics"
+                  element={<Electronics></Electronics>}
+                ></Route>
+                <Route path="/jewelery" element={<Jewelery></Jewelery>}></Route>
+                <Route
+                  path="/mensclothing"
+                  element={<MensClothing></MensClothing>}
+                ></Route>
+                <Route
+                  path="/womensclothing"
+                  element={<WomensClothing></WomensClothing>}
+                ></Route>
+                <Route
+                  path="/product/:id"
+                  element={<CardProduct></CardProduct>}
+                ></Route>
+                <Route
+                  path="/registration"
+                  element={<Registration></Registration>}
+                ></Route>
+                <Route path="/cart" element={<Cart></Cart>}></Route>
+                <Route path="*" element={<NotFound></NotFound>}></Route>
+              </Routes>
+            </div>
+            <Footer />
+          </div>
+        </themeContext.Provider>
+      </UserContext.Provider>
     </>
   );
 }

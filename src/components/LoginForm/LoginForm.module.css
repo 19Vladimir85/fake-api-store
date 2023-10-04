@@ -1,0 +1,23 @@
+.form {
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  border: 2px solid rgb(158, 157, 157);
+  width: 100px;
+  height: 20px;
+  padding-left: 10px;
+}
+
+.formButton {
+  width: 120px;
+  height: 26px;
+  border: 2px solid rgb(158, 157, 157);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.formButton :hover {
+  background-color: #1677ff;
+}

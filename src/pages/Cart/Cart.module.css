@@ -1,0 +1,17 @@
+.text {
+  margin: 20px;
+}
+.itemList {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 40%;
+  border: 2px solid rgb(234, 230, 230);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+.cart {
+  display: flex;
+  justify-content: space-around;
+}

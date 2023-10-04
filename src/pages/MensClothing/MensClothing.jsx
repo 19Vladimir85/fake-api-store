@@ -1,21 +1,31 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import style from "./MensClothing.module.css";
 import { api } from "../../utils/api";
 import Card from "../../components/Card/Card";
+import useApi from "../../hooks/useApi";
 
 function MensClothing() {
-  const [products, setProducts] = useState([]);
+  const getMensClothingProducts = useCallback(
+    () => api.getMensClothingProducts(),
+    []
+  );
+  const { data: products } = useApi(getMensClothingProducts);
+  console.log("Render mensClothing");
 
   useEffect(() => {
-    api.getMensClothingProducts().then((res) => setProducts(res));
-  }, []);
+    console.log("Call useEffect");
+    getMensClothingProducts();
+  }, [getMensClothingProducts]);
+
   return (
     <>
-      <div className={style.catalog}>
-        {products.map((el) => (
-          <Card key={el.id} isFavorite={false} {...el}></Card>
-        ))}
-      </div>
+      {products && (
+        <div className={style.catalog}>
+          {products.map((el) => (
+            <Card key={el.id} isFavorite={false} {...el}></Card>
+          ))}
+        </div>
+      )}
     </>
   );
 }

@@ -20,3 +20,9 @@
   height: 25%;
   margin-top: 0px;
 }
+
+.inCart {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

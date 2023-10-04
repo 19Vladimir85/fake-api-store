@@ -13,7 +13,8 @@ function useApi(callback) {
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
   }, [callback]);
-  return { data, loading, error };
+
+  return { data, loading, error, setData };
 }
 
 export default useApi;
