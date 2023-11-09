@@ -77,7 +77,9 @@
   text-overflow: ellipsis;
 }
 
-.iconConteiner {
+.iconCart {
+  font-size: 15px;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,9 +90,4 @@
   position: absolute;
   bottom: 20px;
   right: 20px;
-}
-
-.iconCart {
-  font-size: 15px;
-  color: white;
 }

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from "./StarRating.module.css";
-import { FaStar } from "react-icons/fa";
+import { YELLOW, ACTIVE } from "../../utils/consts";
+import { StarFilled } from "@ant-design/icons";
 
-function StarRating() {
-  const [rating, setRating] = useState(null);
+function StarRating({ rate }) {
+  const [rating, setRating] = useState(rate);
   const [hover, setHover] = useState(null);
   return (
     <div className={styles.starRating}>
@@ -18,9 +19,12 @@ function StarRating() {
               value={ratingValue}
               onClick={() => setRating(ratingValue)}
             />
-            <FaStar
+
+            <StarFilled
               className={styles.starItem}
-              color={ratingValue <= (hover || rating) ? "#FFD700" : "#D3D3D3"}
+              style={{
+                color: ratingValue <= (hover || rating) ? YELLOW : ACTIVE,
+              }}
               onMouseEnter={() => setHover(ratingValue)}
               onMouseLeave={() => setHover(null)}
             />

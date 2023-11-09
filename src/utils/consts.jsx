@@ -1,29 +1,13 @@
 export const banner = {
   img: "images/washingmachine.png",
-  title: "Стиральная машина Panasonic NA-127VB3",
+  title: "Washing machine Panasonic NA-127VB3",
   description:
-    "Специальные программы: стирка деликатных тканей, экономичная стирка, стирка спортивной одежды, стирка пуховых вещей, супер-полоскание, быстрая стирка, предварительная стирка.",
+    "Special programs: washing delicate fabrics, economical washing, washing sportswear, washing down items, super-rinse, quick wash, pre-wash.",
 };
 
-export const tabs = [
-  {
-    id: "all",
-    title: "Все товары",
-  },
-  {
-    id: "electronics",
-    title: "Электроника",
-  },
-  {
-    id: "jewelery",
-    title: "Украшения",
-  },
-  {
-    id: "men's clothing",
-    title: "Мужская одежда",
-  },
-  {
-    id: "women's clothing",
-    title: "Женская одежда",
-  },
-];
+export const darkTheme = "black";
+export const liteTheme = "white";
+export const access = "token";
+
+export const YELLOW = "#FFD700";
+export const ACTIVE = "#D3D3D3";

@@ -6,7 +6,6 @@ function useApi(callback) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("hello");
     setLoading(true);
     callback()
       .then((res) => setData(res))

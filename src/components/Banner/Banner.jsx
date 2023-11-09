@@ -1,6 +1,7 @@
 import styles from "./Banner.module.css";
 import Button from "../Button/Button";
-import AdBanner from "../AdBanner/AdBanner";
+import InfoBlock from "../InfoBlock/InfoBlock";
+import React from "react";
 
 function Banner({ img, title, description, onClick }) {
   return (
@@ -10,16 +11,16 @@ function Banner({ img, title, description, onClick }) {
           <p className={styles.title}>{title}</p>
           <p className={styles.description}>{description}</p>
           <div className={styles.buttons}>
-            <Button theme="light">Купить сейчас</Button>
+            <Button theme="light">Buy now</Button>
             <Button onClick={() => onClick(true)} theme="dark">
-              Узнать больше
+              Learn more
             </Button>
           </div>
         </div>
         <div className={styles.images}>
-          <AdBanner className={styles.adbanner}>
-            Больше 15 моделей разных цветов и размеров
-          </AdBanner>
+          <InfoBlock className={styles.adbanner}>
+            More than 15 models of different colors and sizes
+          </InfoBlock>
           <img src={img} alt="washingmachine" className={styles.image} />
         </div>
       </div>

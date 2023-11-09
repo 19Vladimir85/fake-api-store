@@ -1,10 +1,10 @@
+import React from "react";
 import style from "./Catalog.module.css";
 import { api } from "../../utils/api";
 import Card from "../../components/Card/Card";
 import useApi from "../../hooks/useApi";
 import { useCallback, useState } from "react";
 import { Filter } from "../../components/Filter/Filter";
-import { tabs } from "../../utils/consts";
 
 function Catalog() {
   const [currentTab, setCurrentTab] = useState("all");
@@ -24,19 +24,22 @@ function Catalog() {
     }
   }
 
+  const productItems = products?.length > 0 ? products : Array(10).fill(1);
+
   return (
     <div className={style.catalog}>
       <div className={style.filter}>
-        <Filter tabs={tabs} onChange={onChange} activTab={currentTab} />
+        <Filter onChange={onChange} activTab={currentTab} />
       </div>
       <div className={style.catalogCards}>
-        {products
-          ? products.map((el) => (
+        {productItems
+          ? productItems.map((el) => (
               <Card
                 key={el.id}
                 isFavorite={false}
                 {...el}
                 loading={loading}
+                product={el}
               ></Card>
             ))
           : Array(10)

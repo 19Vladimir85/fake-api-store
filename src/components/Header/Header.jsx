@@ -3,15 +3,15 @@ import Icons from "./Icons/Icons";
 import styles from "./Header.module.css";
 import { Switch } from "antd";
 import { themeContext } from "../../context/ThemeContext";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import Button from "../Button/Button";
 import Modal from "../../components/Modal/Modal";
 import { useState } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { api } from "../../utils/api";
-import { putLSItem } from "../../utils/localStorage";
+import { putLSItem, deleteLSItem } from "../../utils/localStorage";
 import { UserContext } from "../../context/UserContext";
-import { deleteLSItem } from "../../utils/localStorage";
+import { darkTheme, liteTheme, access } from "../../utils/consts";
 
 function Header() {
   const { theme, onChangeTheme } = useContext(themeContext);
@@ -19,13 +19,12 @@ function Header() {
   const [open, setOpen] = useState(false);
 
   const onChange = (checked) => {
-    console.log(`switch to ${checked}`);
-    onChangeTheme(checked ? "white" : "black");
+    onChangeTheme(checked ? liteTheme : darkTheme);
   };
 
   const onSubmit = (data) => {
     api.userLogin(data).then((res) => {
-      putLSItem("token", res.token);
+      putLSItem(access, res.token);
       onChangeLogin(res.token);
     });
     setOpen(false);
@@ -45,19 +44,19 @@ function Header() {
             <Button
               className={styles.buttonLogout}
               onClick={() => {
-                deleteLSItem("token");
+                deleteLSItem(access);
                 onChangeLogin();
               }}
             >
-              Выйти
+              Sing out
             </Button>
           ) : (
             <Button className={styles.buttonLogin} onClick={setOpen}>
-              Войти
+              Sing in
             </Button>
           )}
 
-          <Switch checked={theme === "white"} onChange={onChange} />
+          <Switch checked={theme === liteTheme} onChange={onChange} />
 
           <Icons />
         </div>

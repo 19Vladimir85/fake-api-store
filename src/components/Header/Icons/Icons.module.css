@@ -1,12 +1,31 @@
 .iconsConteiner {
   display: flex;
   justify-content: center;
+  align-items: center;
   font-size: 22px;
   border-radius: 30px;
   border: 1px;
   background-color: hsl(0, 12%, 94%);
-  width: 65px;
-  height: 32px;
+  width: 75px;
+  height: 34px;
+}
+.icons {
+  position: relative;
+}
+
+.label {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  font-size: 11px;
+  color: white;
+  z-index: 1;
+  left: 14px;
+  border-radius: 50%;
+  background-color: #1677ff;
 }
 
 .cart:hover {

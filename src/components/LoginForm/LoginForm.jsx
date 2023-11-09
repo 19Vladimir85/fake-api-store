@@ -1,5 +1,6 @@
 import styles from "./LoginForm.module.css";
 import { useForm } from "react-hook-form";
+import React from "react";
 
 function LoginForm({ onSubmit }) {
   const { register, handleSubmit } = useForm();
@@ -10,16 +11,16 @@ function LoginForm({ onSubmit }) {
         type="text"
         {...register("login", { required: true })}
         className={styles.input}
-        placeholder="Логин"
+        placeholder="Login"
       ></input>
       <input
         type="password"
         {...register("password", { required: true })}
         className={styles.input}
-        placeholder="Пароль"
+        placeholder="Password"
       ></input>
       <button className={styles.formButton} type="submit" onClick={onSubmit}>
-        Авторизоваться
+        Sing in
       </button>
     </form>
   );

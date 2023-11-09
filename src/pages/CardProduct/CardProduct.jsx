@@ -1,13 +1,21 @@
+import React from "react";
 import styles from "./CardProduct.module.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import CartButton from "../../components/CartButton/CartButton";
 import Button from "../../components/Button/Button";
 import StarRating from "../../components/StarRating/StarRating";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../store/actions/cartActions";
 
 function CardProduct() {
   const [product, setProduct] = useState([]);
   const { id } = useParams();
+  const dispatch = useDispatch();
+
+  function handleAddProduct() {
+    dispatch(addProduct({ ...product, count: 1 }));
+  }
 
   useEffect(() => {
     const getProduct = async () => {
@@ -25,21 +33,27 @@ function CardProduct() {
       </div>
       <div className={styles.aboutProduct}>
         <StarRating />
-        <p className={styles.title}>
-          <b>Название:</b> {product.title}
+        <p>
+          <b>Title:</b> {product.title}
         </p>
-        <p className={styles.description}>
-          <b>Описание:</b> {product.description}
+        <p>
+          <b>Description:</b> {product.description}
         </p>
-        <p className={styles.category}>
-          <b>Категория:</b> {product.category}
+        <p>
+          <b>Category:</b> {product.category}
         </p>
-        <p className={styles.price}>
-          <b>Цена:</b> {product.price}$
+        <p>
+          <b>Price:</b> {product.price}$
         </p>
         <div className={styles.inCart}>
           <CartButton />
-          <Button theme={"dark"}>В корзину</Button>
+          <Button
+            className={styles.inCart_btn}
+            theme={"dark"}
+            onClick={handleAddProduct}
+          >
+            Add to cart
+          </Button>
         </div>
       </div>
     </div>

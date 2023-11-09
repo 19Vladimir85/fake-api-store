@@ -1,12 +1,13 @@
 import styles from "./Card.module.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import { Tooltip, Collapse } from "antd";
 import cn from "classnames";
 import { Link } from "react-router-dom";
 import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton from "../../utils/Skeleton";
 import StarRating from "../StarRating/StarRating";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../store/actions/cartActions";
 
 function Card({
   loading,
@@ -17,30 +18,31 @@ function Card({
   description,
   category,
   price,
+  product,
+  rate,
 }) {
   const [cardActive, setCardActive] = useState(false);
   const [isLiked, setIsLiked] = useState(isFavorite);
-  const item = [
-    {
-      key: "1",
-      label: "Описание:",
-      children: <p>{description}</p>,
-    },
-  ];
-  function cardClick() {
+  function handleCardClick() {
     setCardActive(!cardActive);
+  }
+
+  const dispatch = useDispatch();
+
+  function handleAddProduct() {
+    dispatch(addProduct({ id, ...product, count: 1 }));
   }
   return loading ? (
     <Skeleton count={5} />
   ) : (
     <div
-      className={cardActive ? cn(styles.card, styles.opened) : cn(styles.card)}
-      onClick={cardClick}
+      className={cn(styles.card, { [styles.opened]: cardActive })}
+      onClick={handleCardClick}
     >
       <img
         alt="heartImg"
         onClick={() => {
-          isLiked ? setIsLiked(false) : setIsLiked(true);
+          setIsLiked(!isLiked);
         }}
         className={styles.isLiked}
         src={isLiked ? "images/blueHeart.png" : "images/whiteHeart.png"}
@@ -51,17 +53,16 @@ function Card({
         </Link>
       </div>
       <div className={styles.aboutProduct}>
-        <Tooltip title={title}>
-          <p className={styles.title}>Название: {title}</p>
-        </Tooltip>
-        <Collapse items={item}></Collapse>
-        <p className={styles.category}>Категория: {category}</p>
-        <p className={styles.price}>Цена: {price}$</p>
-        <StarRating />
+        <p className={styles.title}>Title: {title}</p>
+        <p className={styles.description}>Description: {description}</p>
+        <p className={styles.category}>Category: {category}</p>
+        <p className={styles.price}>Price: {price}$</p>
+        <StarRating rate={rate} />
       </div>
-      <div className={styles.iconConteiner}>
-        <ShoppingCartOutlined className={styles.iconCart} />
-      </div>
+      <ShoppingCartOutlined
+        className={styles.iconCart}
+        onClick={handleAddProduct}
+      />
     </div>
   );
 }

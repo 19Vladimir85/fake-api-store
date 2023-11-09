@@ -1,8 +1,11 @@
 import styles from "./Form.module.css";
 import { useForm } from "react-hook-form";
 import { api } from "../../utils/api";
+import React, { useEffect, useState } from "react";
 
 function Form() {
+  const [categories, setCategories] = useState([]);
+
   const {
     register,
     handleSubmit,
@@ -12,47 +15,52 @@ function Form() {
     api.addNewProduct(data);
   };
 
-  console.log(errors);
+  useEffect(() => {
+    api.getAllCategories().then((res) => setCategories(res));
+  }, []);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <input
         {...register("image", { required: true })}
         className={styles.input}
-        placeholder="Изображение"
+        placeholder="Image"
       ></input>
-      {errors.image && <p className={styles.error}>Поле не заполнено</p>}
+      {errors.image && <p className={styles.error}>Field is not filled</p>}
       <input
         {...register("title", { required: true })}
         className={styles.input}
-        placeholder="Название"
+        placeholder="Title"
       ></input>
-      {errors.title && <p className={styles.error}>Поле не заполнено</p>}
+      {errors.title && <p className={styles.error}>Field is not filled</p>}
       <input
         {...register("description", { required: true })}
         className={styles.input}
-        placeholder="Описание"
+        placeholder="Description"
       ></input>
-      {errors.description && <p className={styles.error}>Поле не заполнено</p>}
+      {errors.description && (
+        <p className={styles.error}>Field is not filled</p>
+      )}
       <select
         {...register("category", { required: true })}
         className={styles.input}
-        placeholder="Категория"
+        placeholder="Category"
       >
-        <option value="">Бижутерия</option>
-        <option value="">Электроника</option>
-        <option value="">Женская одежда</option>
-        <option value="">Мужская одежда</option>
+        {categories.map((el) => (
+          <option key={el} value={el}>
+            {el}
+          </option>
+        ))}
       </select>
-      {errors.category && <p className={styles.error}>Поле не заполнено</p>}
+      {errors.category && <p className={styles.error}>Field is not filled</p>}
       <input
         {...register("price", { required: true })}
         className={styles.input}
-        placeholder="Цена"
+        placeholder="Price"
       ></input>
-      {errors.price && <p className={styles.error}>Поле не заполнено</p>}
+      {errors.price && <p className={styles.error}>Field is not filled</p>}
       <button className={styles.button} type="submit">
-        Добавить
+        Add
       </button>
     </form>
   );

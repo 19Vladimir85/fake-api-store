@@ -3,27 +3,13 @@ class Api {
     this.url = url;
   }
   getAllProducts() {
-    return fetch(`${this.url}/products`).then((res) => res.json());
-  }
-  getElectronicsProducts() {
-    return fetch(`${this.url}/products/category/electronics`).then((res) =>
-      res.json()
-    );
-  }
-  getJeweleryProducts() {
-    return fetch(`${this.url}/products/category/jewelery`).then((res) =>
-      res.json()
-    );
-  }
-  getMensClothingProducts() {
-    return fetch(`${this.url}/products/category/men's clothing`).then((res) =>
-      res.json()
-    );
-  }
-  getWomensClothingProducts() {
-    return fetch(`${this.url}/products/category/women's clothing`).then((res) =>
-      res.json()
-    );
+    return fetch(`${this.url}/products`)
+      .then((res) => res.json())
+      .then((res) =>
+        res.map((card) => {
+          return { ...card, rate: 3 };
+        })
+      );
   }
 
   getCategoryProducts(category) {
@@ -31,6 +17,7 @@ class Api {
       res.json()
     );
   }
+
   addNewProduct(data) {
     return fetch("https://fakestoreapi.com/products", {
       method: "POST",
@@ -61,6 +48,12 @@ class Api {
         password: "83r5^_",
       }),
     }).then((res) => res.json());
+  }
+
+  getAllCategories() {
+    return fetch("https://fakestoreapi.com/products/categories").then((res) =>
+      res.json()
+    );
   }
 }
 

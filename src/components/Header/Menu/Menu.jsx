@@ -1,74 +1,42 @@
 import { Menu as MenuAntd } from "antd";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { UserContext } from "../../../../src/context/UserContext";
-
-const itemsLogin = [
-  {
-    label: "Главная",
-    key: "/main",
-  },
-  {
-    label: "Каталог",
-    key: "/allproducts",
-  },
-  {
-    label: "Доставка и оплата",
-    key: "/conditions",
-    children: [
-      {
-        label: "Условия доставки",
-        key: "/delivery",
-      },
-      {
-        label: "Условия оплаты",
-        key: "/payment",
-      },
-    ],
-  },
-  {
-    label: "Контакты",
-    key: "/contacts",
-  },
-  {
-    label: "Администрирование",
-    key: "/administration",
-    children: [
-      {
-        label: "Добавление товара",
-        key: "/addproduct",
-      },
-    ],
-  },
-];
 
 const itemsLogout = [
   {
-    label: "Главная",
+    label: "Main",
     key: "/main",
   },
   {
-    label: "Каталог",
+    label: "Сatalog",
     key: "/allproducts",
   },
   {
-    label: "Доставка и оплата",
+    label: "Shipping and payment",
     key: "/conditions",
     children: [
       {
-        label: "Условия доставки",
+        label: "Delivery",
         key: "/delivery",
       },
       {
-        label: "Условия оплаты",
+        label: "Payment",
         key: "/payment",
       },
     ],
   },
   {
-    label: "Контакты",
+    label: "Contacts",
     key: "/contacts",
+  },
+];
+
+const itemsLogin = [
+  ...itemsLogout,
+  {
+    label: "Add product",
+    key: "/addproduct",
   },
 ];
 
@@ -77,31 +45,18 @@ function Menu() {
   const [current, setCurrent] = useState("mainpage");
   const { token } = useContext(UserContext);
   const onClick = (e) => {
-    console.log("click ", e);
     setCurrent(e.key);
     navigate(e.key);
   };
 
   return (
-    <>
-      {token ? (
-        <MenuAntd
-          onClick={onClick}
-          selectedKeys={[current]}
-          mode="horizontal"
-          items={itemsLogin}
-          style={{ minWidth: "575px" }}
-        />
-      ) : (
-        <MenuAntd
-          onClick={onClick}
-          selectedKeys={[current]}
-          mode="horizontal"
-          items={itemsLogout}
-          style={{ minWidth: "575px" }}
-        />
-      )}
-    </>
+    <MenuAntd
+      onClick={onClick}
+      selectedKeys={[current]}
+      mode="horizontal"
+      items={token ? itemsLogin : itemsLogout}
+      style={{ minWidth: "575px" }}
+    />
   );
 }
 

@@ -26,3 +26,7 @@
   align-items: center;
   gap: 5px;
 }
+
+.inCart_btn :hover {
+  color: rgb(70, 77, 200);
+}

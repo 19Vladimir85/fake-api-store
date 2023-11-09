@@ -1,6 +1,6 @@
 import styles from "./Button.module.css";
 import classNames from "classnames";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { themeContext } from "../../context/ThemeContext";
 
 function Button({ className, children, onClick }) {

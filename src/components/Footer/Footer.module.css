@@ -19,7 +19,7 @@ footer {
   width: 25px;
 }
 
-.footerNetWorks {
+.footerItem {
   display: flex;
   gap: 5px;
 }
