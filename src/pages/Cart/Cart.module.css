@@ -1,6 +1,15 @@
 .text {
+  display: flex;
   margin: 20px;
 }
+
+.textInCart {
+  display: flex;
+
+  justify-content: center;
+  width: 250px;
+}
+
 .itemList {
   display: flex;
   flex-direction: column;
@@ -8,11 +17,11 @@
   align-items: center;
   height: 100%;
   width: 40%;
-  margin-bottom: 30px;
 }
 .cart {
   display: flex;
   justify-content: space-around;
+  margin-bottom: 30px;
 }
 
 .image {

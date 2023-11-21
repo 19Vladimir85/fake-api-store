@@ -26,7 +26,7 @@ function MainPage() {
           </div>
           <div className={styles.bodyCards}>
             {products?.map((el) => (
-              <Card key={el.title} {...el}></Card>
+              <Card product={el} key={el.title} {...el}></Card>
             ))}
           </div>
         </div>

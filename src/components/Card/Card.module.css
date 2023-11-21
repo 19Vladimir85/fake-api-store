@@ -11,7 +11,7 @@
   border-radius: 30px;
 }
 
-.opened {
+.card:hover {
   border: 2px solid rgb(236, 234, 234);
   border-radius: 30px;
 }

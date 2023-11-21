@@ -11,7 +11,11 @@ function CartButton({ id, startCount }) {
   const [count, setCount] = useState(startCount);
 
   function handleDec() {
-    if (count > 1) setCount(count - 1);
+    if (count <= 1) {
+      return 1;
+    } else {
+      setCount(count - 1);
+    }
     dispatch(decreaseProduct(id));
   }
   function handleInc() {

@@ -1,3 +1,5 @@
+import { generateRate } from "./generateRate";
+
 class Api {
   constructor(url) {
     this.url = url;
@@ -7,7 +9,7 @@ class Api {
       .then((res) => res.json())
       .then((res) =>
         res.map((card) => {
-          return { ...card, rate: 3 };
+          return { ...card, rate: generateRate(card) };
         })
       );
   }

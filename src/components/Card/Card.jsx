@@ -1,7 +1,6 @@
 import styles from "./Card.module.css";
 import React, { useState } from "react";
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import cn from "classnames";
 import { Link } from "react-router-dom";
 import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton from "../../utils/Skeleton";
@@ -21,11 +20,7 @@ function Card({
   product,
   rate,
 }) {
-  const [cardActive, setCardActive] = useState(false);
   const [isLiked, setIsLiked] = useState(isFavorite);
-  function handleCardClick() {
-    setCardActive(!cardActive);
-  }
 
   const dispatch = useDispatch();
 
@@ -35,10 +30,7 @@ function Card({
   return loading ? (
     <Skeleton count={5} />
   ) : (
-    <div
-      className={cn(styles.card, { [styles.opened]: cardActive })}
-      onClick={handleCardClick}
-    >
+    <div className={styles.card}>
       <img
         alt="heartImg"
         onClick={() => {

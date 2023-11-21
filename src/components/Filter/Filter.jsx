@@ -1,18 +1,11 @@
 import styles from "./Filter.module.css";
 import cn from "classnames";
-import React, { useEffect, useState } from "react";
-import { api } from "../../utils/api";
+import React from "react";
 
-export function Filter({ activTab, onChange }) {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    api.getAllCategories().then((res) => setCategories(res));
-  }, []);
-
+export function Filter({ activTab, onChange, elements }) {
   return (
     <div className={styles.filter}>
-      {categories.map((item) => {
+      {elements.map((item) => {
         return (
           <div
             className={cn(styles.tab, {
